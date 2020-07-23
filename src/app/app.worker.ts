@@ -1,6 +1,13 @@
-/// <reference lib="webworker" />
+import * as signalR from '../assets/signalr.js';
 
-addEventListener('message', ({ data }) => {
-  const response = `worker response to ${data}`;
-  postMessage(response);
+const connection = new signalR.HubConnectionBuilder()
+  .withUrl('https://example.com/signalr/chat')
+  .build();
+
+connection.on('send', data => {
+  console.log(data);
 });
+
+connection.start()
+  .then(() => connection.invoke('send', 'Hello'));
+

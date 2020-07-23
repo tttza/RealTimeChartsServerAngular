@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'RealTimeChartsServerAngular';
 }
 
+
 if (typeof Worker !== 'undefined') {
   // Create a new
   const worker = new Worker('./app.worker', { type: 'module' });
